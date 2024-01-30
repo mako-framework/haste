@@ -20,13 +20,13 @@
     },
     "require-dev": {
         "mako/framework": "^11.0.0-dev",
-        "phpstan/phpstan": "^1.4.5"
+        "phpstan/phpstan": "^1.10.57"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
     "extra": {
         "branch-alias": {
-            "dev-master": "2.3-dev"
+            "dev-master": "1.0-dev"
         }
     }
 }
