@@ -1,0 +1,32 @@
+{
+    "name": "mako/afterburner",
+    "description": "(Experimental) Application server runner for the Mako Framework",
+    "keywords": ["mako", "framework", "frankenphp"],
+    "homepage": "http://makoframework.com",
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "Frederic G. Østby",
+            "email": "frederic.g.ostby@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "mako\\afterburner\\": "src"
+        }
+    },
+    "require": {
+        "php": ">=8.2.0"
+    },
+    "require-dev": {
+        "mako/framework": "^11.0.0-dev",
+        "phpstan/phpstan": "^1.4.5"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "extra": {
+        "branch-alias": {
+            "dev-master": "2.3-dev"
+        }
+    }
+}
