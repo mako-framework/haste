@@ -39,9 +39,11 @@ include dirname(__DIR__) . '/app/init.php';
 FrankenPHP::run(new Application(MAKO_APPLICATION_PATH));
 ```
 
+That's it! Enjoy your (hopefully) improved performance 🎉
+
 ## Docker setup
 
-The following basic dockerfile will help get you started:
+The following basic dockerfile will help to get you started:
 
 ```dockerfile
 FROM dunglas/frankenphp:1.0.3-php8.3.1
