@@ -2,9 +2,11 @@
 
 [![Static analysis](https://github.com/mako-framework/afterburner/actions/workflows/static-analysis.yml/badge.svg)](https://github.com/mako-framework/afterburner/actions/workflows/static-analysis.yml)
 
-The `mako/afterburner` package allows you to boost application performance by running it on an application server like FrankenPHP.
+The `mako/afterburner` package allows you to boost your application performance by running it on an application server like FrankenPHP.
 
-> Note that this package is experimental!
+The performance gains will vary based on the application but a basic "Hello, world!" application will run about 4-5 times faster than on a php+apache setup.
+
+> Note that this package is experimental and make sure not to leak data between requests by using static variables!
 
 ## Requirements
 
