@@ -4,4 +4,6 @@ parameters:
 	level: 5
 	reportUnmatchedIgnoredErrors: false
 	ignoreErrors:
+		- '#Function frankenphp_handle_request not found\.#'
+		- '#Used function frankenphp_handle_request not found\.#'
 
