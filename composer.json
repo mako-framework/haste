@@ -1,6 +1,6 @@
 {
     "name": "mako/afterburner",
-    "description": "(Experimental) Application server runner for the Mako Framework",
+    "description": "(Experimental) Boost your application performance by running it on a application server like FrankenPHP",
     "keywords": ["mako", "framework", "frankenphp"],
     "homepage": "http://makoframework.com",
     "license": "BSD-3-Clause",
