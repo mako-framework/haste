@@ -18,5 +18,5 @@ interface AfterburnerInterface
 	/**
 	 * Runs the application.
 	 */
-	public static function run(Application $application, ?Closure $beforeRequest = null, ?Closure $afterRequest, mixed ...$options): void;
+	public static function run(Application $application, ?Closure $beforeRequest = null, ?Closure $afterRequest = null, mixed ...$options): void;
 }

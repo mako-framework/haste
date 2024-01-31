@@ -27,7 +27,7 @@ class FrankenPHP implements AfterburnerInterface
 	/**
 	 * {@inheritDoc}
 	 */
-	public static function run(Application $application, ?Closure $beforeRequest = null, ?Closure $afterRequest, mixed ...$options): void
+	public static function run(Application $application, ?Closure $beforeRequest = null, ?Closure $afterRequest = null, mixed ...$options): void
 	{
 		$classesToKeep = $application->getContainer()->getInstanceClassNames();
 
