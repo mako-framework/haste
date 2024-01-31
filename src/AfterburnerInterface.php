@@ -7,6 +7,7 @@
 
 namespace mako\afterburner;
 
+use Closure;
 use mako\application\web\Application;
 
 /**
@@ -17,5 +18,5 @@ interface AfterburnerInterface
 	/**
 	 * Runs the application.
 	 */
-	public static function run(Application $application, mixed ...$options): void;
+	public static function run(Application $application, ?Closure $beforeRequest = null, ?Closure $afterRequest, mixed ...$options): void;
 }

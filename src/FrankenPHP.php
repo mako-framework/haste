@@ -7,6 +7,7 @@
 
 namespace mako\afterburner;
 
+use Closure;
 use mako\application\Application as BaseApplication;
 use mako\application\CurrentApplication;
 use mako\application\web\Application;
@@ -26,7 +27,7 @@ class FrankenPHP implements AfterburnerInterface
 	/**
 	 * {@inheritDoc}
 	 */
-	public static function run(Application $application, mixed ...$options): void
+	public static function run(Application $application, ?Closure $beforeRequest = null, ?Closure $afterRequest, mixed ...$options): void
 	{
 		$classesToKeep = $application->getContainer()->getInstanceClassNames();
 
@@ -44,6 +45,12 @@ class FrankenPHP implements AfterburnerInterface
 
 			CurrentApplication::set($currentApplication);
 
+			// Run the before request closure and stop processing requests if it returns FALSE.
+
+			if ($beforeRequest !== null && $currentApplication->getContainer()->call($beforeRequest) === false) {
+				break;
+			}
+
 			// Handle the request.
 
 			$success = frankenphp_handle_request(static function () use ($currentApplication) {
@@ -58,6 +65,12 @@ class FrankenPHP implements AfterburnerInterface
 					}
 				}
 			});
+
+			// Run the after request closure and stop processing requests if it returns FALSE.
+
+			if ($afterRequest !== null && $currentApplication->getContainer()->call($afterRequest) === false) {
+				break;
+			}
 
 			// Reset the container to the default state and collect garbage.
 
