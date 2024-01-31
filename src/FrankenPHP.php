@@ -18,6 +18,7 @@ use Throwable;
 use function array_diff;
 use function frankenphp_handle_request;
 use function gc_collect_cycles;
+use function ignore_user_abort;
 
 /**
  * FrankenPHP afterburner.
