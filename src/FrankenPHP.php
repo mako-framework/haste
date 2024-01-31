@@ -29,6 +29,8 @@ class FrankenPHP implements AfterburnerInterface
 	 */
 	public static function run(Application $application, ?Closure $beforeRequest = null, ?Closure $afterRequest = null, mixed ...$options): void
 	{
+		ignore_user_abort(true);
+
 		$classesToKeep = $application->getContainer()->getInstanceClassNames();
 
 		$requests = 0;
