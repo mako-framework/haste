@@ -39,6 +39,8 @@ include dirname(__DIR__) . '/app/init.php';
 FrankenPHP::run(new Application(MAKO_APPLICATION_PATH));
 ```
 
+Finally, you should disable auto-registration of the error handler by setting `error_handler.register` to `false` in `app/config/application.php`.
+
 That's it! Enjoy your (hopefully) improved performance 🎉
 
 ## Docker setup
