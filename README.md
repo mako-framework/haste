@@ -25,7 +25,7 @@ Next you'll have to replace the `index.php` contents with the following.
 ```php
 <?php
 
-use app\FrankenPHP;
+use mako\afterburner\FrankenPHP;
 use mako\application\web\Application;
 
 /**
