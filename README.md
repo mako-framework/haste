@@ -48,7 +48,7 @@ That's it! Enjoy your (hopefully) improved performance 🎉
 The following basic dockerfile will help to get you started:
 
 ```dockerfile
-FROM dunglas/frankenphp:1.0.3-php8.3.1
+FROM dunglas/frankenphp:1.1.0-php8.3.2
 
 RUN install-php-extensions \
     opcache
