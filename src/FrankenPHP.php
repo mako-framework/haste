@@ -5,7 +5,7 @@
  * @license   http://www.makoframework.com/license
  */
 
-namespace mako\afterburner;
+namespace mako\haste;
 
 use Closure;
 use mako\application\Application as BaseApplication;
@@ -21,9 +21,9 @@ use function gc_collect_cycles;
 use function ignore_user_abort;
 
 /**
- * FrankenPHP afterburner.
+ * FrankenPHP.
  */
-class FrankenPHP implements AfterburnerInterface
+class FrankenPHP implements HasteInterface
 {
 	/**
 	 * {@inheritDoc}

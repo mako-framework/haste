@@ -5,15 +5,15 @@
  * @license   http://www.makoframework.com/license
  */
 
-namespace mako\afterburner;
+namespace mako\haste;
 
 use Closure;
 use mako\application\web\Application;
 
 /**
- * Afterburner interface.
+ * Haste interface.
  */
-interface AfterburnerInterface
+interface HasteInterface
 {
 	/**
 	 * Runs the application.

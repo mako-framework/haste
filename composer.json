@@ -1,5 +1,5 @@
 {
-    "name": "mako/afterburner",
+    "name": "mako/haste",
     "description": "(Experimental) Boost your application performance by running it on a application server like FrankenPHP",
     "keywords": ["mako", "framework", "frankenphp"],
     "homepage": "http://makoframework.com",
@@ -12,7 +12,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "mako\\afterburner\\": "src"
+            "mako\\haste\\": "src"
         }
     },
     "require": {
