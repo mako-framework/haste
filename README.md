@@ -48,15 +48,15 @@ That's it! Enjoy your (hopefully) improved performance 🎉
 The following basic dockerfile will help to get you started:
 
 ```dockerfile
-FROM dunglas/frankenphp:1.1.0-php8.3.2
+FROM dunglas/frankenphp:1.3.4-php8.4
 
 RUN install-php-extensions \
     opcache
 
-COPY app /app/app
-COPY public /app/public
-COPY vendor /app/vendor
+RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
-ENV SERVER_NAME="http://"
+COPY . /app
+
+ENV SERVER_NAME=:80
 ENV FRANKENPHP_CONFIG="worker ./public/index.php"
 ```

@@ -61,7 +61,7 @@ class FrankenPHP implements HasteInterface
 					$currentApplication->run();
 				}
 				catch (Throwable $e) {
-					$currentApplication->getContainer()->get(ErrorHandler::class)->handler($e, shouldExit: false);
+					$currentApplication->getContainer()->get(ErrorHandler::class)->handle($e, shouldExit: false);
 
 					if (($e instanceof HttpException) === false) {
 						return false;
