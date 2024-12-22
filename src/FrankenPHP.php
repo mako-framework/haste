@@ -69,21 +69,25 @@ class FrankenPHP implements HasteInterface
 				}
 			});
 
-			// Run the after request closure and stop processing requests if it returns FALSE.
+			// Clean up if the request was handled successfully.
 
-			if ($afterRequest !== null && $currentApplication->getContainer()->call($afterRequest) === false) {
-				break;
+			if ($success) {
+				// Run the after request closure and stop processing requests if it returns FALSE.
+
+				if ($afterRequest !== null && $currentApplication->getContainer()->call($afterRequest) === false) {
+					break;
+				}
+
+				// Reset the container to the default state and collect garbage.
+
+				$classesToRemove = array_diff($application->getContainer()->getInstanceClassNames(), $classesToKeep);
+
+				foreach ($classesToRemove as $class) {
+					$application->getContainer()->removeInstance($class);
+				}
+
+				gc_collect_cycles();
 			}
-
-			// Reset the container to the default state and collect garbage.
-
-			$classesToRemove = array_diff($application->getContainer()->getInstanceClassNames(), $classesToKeep);
-
-			foreach ($classesToRemove as $class) {
-				$application->getContainer()->removeInstance($class);
-			}
-
-			gc_collect_cycles();
 
 		} while ($success && ++$requests < $maxRequests);
 	}
