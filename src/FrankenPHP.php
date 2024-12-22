@@ -39,6 +39,8 @@ class FrankenPHP implements HasteInterface
 
 		// Handle requests.
 
+		$shutDownEarly = false;
+
 		do {
 			// Clone the application so that we have a clean slate for each request.
 
@@ -56,22 +58,28 @@ class FrankenPHP implements HasteInterface
 
 			// Handle the request.
 
-			$success = frankenphp_handle_request(static function () use ($currentApplication) {
+			$keepGoing = frankenphp_handle_request(static function () use ($currentApplication, &$shutDownEarly) {
 				try {
 					$currentApplication->run();
 				}
 				catch (Throwable $e) {
-					$currentApplication->getContainer()->get(ErrorHandler::class)->handle($e, shouldExit: false);
+					if ($hasHandler = $currentApplication->getContainer()->has(ErrorHandler::class)) {
+						$currentApplication->getContainer()->get(ErrorHandler::class)->handle($e, shouldExit: false);
+					}
 
 					if (($e instanceof HttpException) === false) {
-						return false;
+						$shutDownEarly = true;
+
+						if (!$hasHandler) {
+							throw $e;
+						}
 					}
 				}
 			});
 
 			// Clean up if the request was handled successfully.
 
-			if ($success) {
+			if (!$shutDownEarly) {
 				// Run the after request closure and stop processing requests if it returns FALSE.
 
 				if ($afterRequest !== null && $currentApplication->getContainer()->call($afterRequest) === false) {
@@ -89,6 +97,8 @@ class FrankenPHP implements HasteInterface
 				gc_collect_cycles();
 			}
 
-		} while ($success && ++$requests < $maxRequests);
+			$continue = !$shutDownEarly && $keepGoing;
+
+		} while ($continue && ++$requests < $maxRequests);
 	}
 }
