@@ -7,7 +7,6 @@
 
 namespace mako\haste;
 
-use Closure;
 use mako\application\Application as BaseApplication;
 use mako\application\CurrentApplication;
 use mako\application\web\Application;
@@ -28,7 +27,7 @@ class FrankenPHP implements HasteInterface
 	/**
 	 * {@inheritDoc}
 	 */
-	public static function run(Application $application, ?Closure $beforeRequest = null, ?Closure $afterRequest = null, mixed ...$options): void
+	public static function run(Application $application, ?callable $beforeRequest = null, ?callable $afterRequest = null, mixed ...$options): void
 	{
 		ignore_user_abort(true);
 
@@ -50,7 +49,7 @@ class FrankenPHP implements HasteInterface
 
 			CurrentApplication::set($currentApplication);
 
-			// Run the before request closure and stop processing requests if it returns FALSE.
+			// Run the before request callable and stop processing requests if it returns FALSE.
 
 			if ($beforeRequest !== null && $currentApplication->getContainer()->call($beforeRequest) === false) {
 				break;
@@ -80,7 +79,7 @@ class FrankenPHP implements HasteInterface
 			// Clean up if the request was handled successfully.
 
 			if (!$shutDownEarly) {
-				// Run the after request closure and stop processing requests if it returns FALSE.
+				// Run the after request callable and stop processing requests if it returns FALSE.
 
 				if ($afterRequest !== null && $currentApplication->getContainer()->call($afterRequest) === false) {
 					break;
