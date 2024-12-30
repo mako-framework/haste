@@ -15,6 +15,7 @@ use mako\http\exceptions\HttpException;
 use Throwable;
 
 use function array_diff;
+use function array_merge;
 use function frankenphp_handle_request;
 use function gc_collect_cycles;
 use function ignore_user_abort;
