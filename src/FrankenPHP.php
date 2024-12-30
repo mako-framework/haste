@@ -33,11 +33,17 @@ class FrankenPHP implements HasteInterface
 
 		$classesToKeep = $application->getContainer()->getInstanceClassNames();
 
-		$requests = 0;
+		// Configure things.
+
+		if (!empty($options['classesToKeep'])) {
+			$classesToKeep = array_merge($classesToKeep, $options['classesToKeep']);
+		}
+
 		$maxRequests = $options['maxRequests'] ?? 1000;
 
 		// Handle requests.
 
+		$requests = 0;
 		$shutDownEarly = false;
 
 		do {
