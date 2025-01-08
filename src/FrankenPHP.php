@@ -64,7 +64,7 @@ class FrankenPHP implements HasteInterface
 
 			// Handle the request.
 
-			$keepGoing = frankenphp_handle_request(static function () use ($currentApplication, &$shutDownEarly) {
+			$keepGoing = frankenphp_handle_request(static function () use ($currentApplication, &$shutDownEarly): void {
 				try {
 					$currentApplication->run();
 				}
@@ -105,6 +105,7 @@ class FrankenPHP implements HasteInterface
 
 			$continue = !$shutDownEarly && $keepGoing;
 
-		} while ($continue && ++$requests < $maxRequests);
+		}
+		while ($continue && ++$requests < $maxRequests);
 	}
 }
