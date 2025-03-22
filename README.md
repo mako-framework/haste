@@ -74,7 +74,7 @@ ENV FRANKENPHP_CONFIG="worker ./public/index.php"
 #ENV CADDY_GLOBAL_OPTIONS="debug"
 ```
 
-> Note that we are copying a `php-overrides.ini` file with custom OPcache settings for optimal performance. These settings should work well in most cases, but feel free to customize them as needed.
+> Note that example setup includes a `php-overrides.ini` file with custom OPcache settings for optimal performance. These settings should work well in most cases, but feel free to customize them as needed.
 
 ```ini
 expose_php = Off
