@@ -59,7 +59,7 @@ RUN install-php-extensions \
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
 COPY . /app
-COPY php-overrides.ini /usr/local/etc/php/conf.d/.
+;COPY php-overrides.ini /usr/local/etc/php/conf.d/.
 
 RUN useradd ${USER}
 RUN setcap CAP_NET_BIND_SERVICE=+eip /usr/local/bin/frankenphp
