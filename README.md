@@ -59,7 +59,8 @@ RUN install-php-extensions \
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
 COPY . /app
-COPY php-overrides.ini /usr/local/etc/php/conf.d/.
+
+RUN mv ./php-overrides.ini /usr/local/etc/php/conf.d/.
 
 RUN useradd ${USER}
 RUN setcap CAP_NET_BIND_SERVICE=+eip /usr/local/bin/frankenphp
@@ -70,11 +71,12 @@ USER ${USER}
 
 ENV SERVER_NAME=:80
 ENV FRANKENPHP_CONFIG="worker ./public/index.php"
+#ENV CADDY_GLOBAL_OPTIONS="debug"
 ```
 
 > Note that we are copying a `php-overrides.ini` file with custom OPcache settings for optimal performance. These settings should work well in most cases, but feel free to customize them as needed.
 
-```
+```ini
 expose_php = Off
 zend.exception_ignore_args=0
 memory_limit=512M
