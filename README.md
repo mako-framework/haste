@@ -59,7 +59,7 @@ RUN install-php-extensions \
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
 COPY . /app
-#COPY php-overrides.ini /usr/local/etc/php/conf.d/.
+COPY php-overrides.ini /usr/local/etc/php/conf.d/.
 
 RUN useradd ${USER}
 RUN setcap CAP_NET_BIND_SERVICE=+eip /usr/local/bin/frankenphp
@@ -70,4 +70,19 @@ USER ${USER}
 
 ENV SERVER_NAME=:80
 ENV FRANKENPHP_CONFIG="worker ./public/index.php"
+```
+
+> Note that we are copying a `php-overrides.ini` file with custom OPcache settings for optimal performance. These settings should work well in most cases, but feel free to customize them as needed.
+
+```
+expose_php = Off
+zend.exception_ignore_args=0
+memory_limit=512M
+register_argc_argv = Off
+
+opcache.enable=1
+opcache.memory_consumption=256
+opcache.interned_strings_buffer=16
+opcache.max_accelerated_files=20000
+opcache.validate_timestamps=0
 ```
