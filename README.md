@@ -48,14 +48,25 @@ That's it! Enjoy your (hopefully) improved performance 🎉
 The following basic dockerfile will help to get you started:
 
 ```dockerfile
-FROM dunglas/frankenphp:1.3.4-php8.4
+FROM dunglas/frankenphp:1.4.4-php8.4
+
+ARG USER=haste
 
 RUN install-php-extensions \
-    opcache
+    opcache \
+	pdo_mysql
 
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
 COPY . /app
+COPY php-overrides.ini /usr/local/etc/php/conf.d/.
+
+RUN useradd ${USER}
+RUN setcap CAP_NET_BIND_SERVICE=+eip /usr/local/bin/frankenphp
+RUN chown -R ${USER}:${USER} /data/caddy && chown -R ${USER}:${USER} /config/caddy
+RUN chown -R ${USER}:${USER} ./app/storage
+
+USER ${USER}
 
 ENV SERVER_NAME=:80
 ENV FRANKENPHP_CONFIG="worker ./public/index.php"
