@@ -7,7 +7,6 @@
 
 namespace mako\haste;
 
-use Closure;
 use mako\application\web\Application;
 
 /**
@@ -18,5 +17,5 @@ interface HasteInterface
 	/**
 	 * Runs the application.
 	 */
-	public static function run(Application $application, ?Closure $beforeRequest = null, ?Closure $afterRequest = null, mixed ...$options): void;
+	public static function run(Application $application, ?callable $beforeRequest = null, ?callable $afterRequest = null, mixed ...$options): void;
 }
