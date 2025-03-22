@@ -53,7 +53,7 @@ FROM dunglas/frankenphp:1.4.4-php8.4
 ARG USER=haste
 
 RUN install-php-extensions \
-    opcache \
+	opcache \
 	pdo_mysql
 
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
