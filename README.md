@@ -6,7 +6,7 @@ The `mako/haste` package allows you to boost your application performance by run
 
 The performance gains will vary based on the application but a basic "Hello, world!" application will run about 4-5 times faster than on a php+apache setup.
 
-> Note that this package is experimental and make sure not to leak data between requests by using static variables!
+> It is important to make sure that do you do not leak data between requests by using static variables!
 
 ## Requirements
 
