@@ -12,7 +12,7 @@ The performance gains will vary based on the application but a basic "Hello, wor
 
 Mako 11.0 or greater.
 
-## Installation
+## Setup
 
 First you'll need to install the package as a dependency to your project.
 
