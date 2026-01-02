@@ -1,3 +1,3 @@
-### 1.0.0 <small>(2024-??-??)</small>
+### 1.0.0 <small>(2026-??-??)</small>
 
 Initial release 🎉

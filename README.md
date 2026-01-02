@@ -10,7 +10,7 @@ The performance gains will vary based on the application but a basic "Hello, wor
 
 ## Requirements
 
-Mako 11.0 or greater.
+Mako 12.0 or greater.
 
 ## Setup
 
