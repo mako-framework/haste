@@ -46,7 +46,7 @@ That's it! Enjoy your (hopefully) improved performance 🎉
 The following basic dockerfile will help to get you started:
 
 ```dockerfile
-FROM dunglas/frankenphp:1.4.4-php8.4
+FROM dunglas/frankenphp:1.11.2-php8.5
 
 ARG USER=haste
 
