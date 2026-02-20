@@ -15,8 +15,10 @@ use mako\http\exceptions\HttpException;
 use Throwable;
 
 use function array_diff;
+use function array_unique;
 use function frankenphp_handle_request;
 use function gc_collect_cycles;
+use function http_response_code;
 use function ignore_user_abort;
 
 /**
@@ -82,14 +84,23 @@ class FrankenPHP implements HasteInterface
 					$currentApplication->run();
 				}
 				catch (Throwable $e) {
-					if ($hasHandler = $currentApplication->getContainer()->has(ErrorHandler::class)) {
+					$hasHandler = $currentApplication->getContainer()->has(ErrorHandler::class);
+
+					if ($hasHandler) {
 						$currentApplication->getContainer()->get(ErrorHandler::class)->handle($e, shouldExit: false);
 					}
 
-					if (($e instanceof HttpException) === false) {
+					if ($e instanceof HttpException) {
+						if (!$hasHandler) {
+							http_response_code($e->getCode());
+						}
+					}
+					else {
 						$shutDownEarly = true;
 
 						if (!$hasHandler) {
+							http_response_code(500);
+
 							throw $e;
 						}
 					}
