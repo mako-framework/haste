@@ -15,7 +15,6 @@ use mako\http\exceptions\HttpException;
 use Throwable;
 
 use function array_diff;
-use function array_merge;
 use function frankenphp_handle_request;
 use function gc_collect_cycles;
 use function ignore_user_abort;
@@ -26,21 +25,35 @@ use function ignore_user_abort;
 class FrankenPHP implements HasteInterface
 {
 	/**
+	 * Classes to preload into the container.
+	 */
+	protected const array PRELOAD = [
+		\mako\http\routing\Routes::class,
+		\mako\security\Signer::class,
+	];
+
+	/**
 	 * {@inheritDoc}
 	 */
 	public static function run(Application $application, ?callable $beforeRequest = null, ?callable $afterRequest = null, mixed ...$options): void
 	{
 		ignore_user_abort(true);
 
-		$classesToKeep = $application->getContainer()->getInstanceClassNames();
-
 		// Configure things.
 
-		if (!empty($options['classesToKeep'])) {
-			$classesToKeep = array_merge($classesToKeep, $options['classesToKeep']);
+		$maxRequests = $options['maxRequests'] ?? 1000;
+
+		$classesToPreload = array_unique([...static::PRELOAD, ...$options['preload'] ?? []]);
+
+		// Preload classes into the container.
+
+		foreach ($classesToPreload as $class) {
+			$application->getContainer()->get($class);
 		}
 
-		$maxRequests = $options['maxRequests'] ?? 1000;
+		// Determine which classes we should keep in the container
+
+		$classesToKeep = $application->getContainer()->getInstanceClassNames();
 
 		// Handle requests.
 
