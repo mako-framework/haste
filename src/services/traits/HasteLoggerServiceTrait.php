@@ -5,9 +5,9 @@
  * @license   http://www.makoframework.com/license
  */
 
-namespace mako\haste\logger\traits;
+namespace mako\haste\services\traits;
 
-use mako\haste\logger\FrankenPhpHandler;
+use mako\haste\logger\handlers\FrankenPhpHandler;
 
 /**
  * Haste logger service trait.

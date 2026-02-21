@@ -5,7 +5,7 @@
  * @license   http://www.makoframework.com/license
  */
 
-namespace mako\haste\logger;
+namespace mako\haste\logger\handlers;
 
 use Monolog\Handler\AbstractProcessingHandler;
 use Monolog\Level;
