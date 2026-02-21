@@ -25,7 +25,7 @@ Next you'll have to replace the `index.php` contents with the following.
 ```php
 <?php
 
-use mako\haste\FrankenPHP;
+use mako\haste\FrankenPhp;
 use mako\application\web\Application;
 
 /**
@@ -36,7 +36,7 @@ include dirname(__DIR__) . '/app/init.php';
 /*
  * Start and run the application.
  */
-FrankenPHP::run(new Application(MAKO_APPLICATION_PATH));
+FrankenPhp::run(new Application(MAKO_APPLICATION_PATH));
 ```
 
 That's it! Enjoy your (hopefully) improved performance 🎉
