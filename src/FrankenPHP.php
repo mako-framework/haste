@@ -24,7 +24,7 @@ use function ignore_user_abort;
 /**
  * FrankenPHP.
  */
-class FrankenPHP implements HasteInterface
+class FrankenPhp implements HasteInterface
 {
 	/**
 	 * Classes to preload into the container.
