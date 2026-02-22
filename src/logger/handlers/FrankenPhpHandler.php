@@ -20,7 +20,7 @@ use function frankenphp_log;
 class FrankenPhpHandler extends AbstractProcessingHandler
 {
 	/**
-	 * Maps monolog levels to FrankenPHP levels.
+	 * Maps Monolog levels to FrankenPHP levels.
 	 */
 	protected function mapLevel(Level $level): int
 	{
