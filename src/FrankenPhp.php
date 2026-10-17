@@ -71,7 +71,7 @@ class FrankenPhp implements HasteInterface
 
 			CurrentApplication::set($currentApplication);
 
-			// Run the before request callable and stop processing requests if it returns FALSE.
+			// Run the before request callable and stop processing requests if it returns false.
 
 			if ($beforeRequest !== null && $currentApplication->getContainer()->call($beforeRequest) === false) {
 				break;
@@ -110,7 +110,7 @@ class FrankenPhp implements HasteInterface
 			// Clean up if the request was handled successfully.
 
 			if (!$shutDownEarly) {
-				// Run the after request callable and stop processing requests if it returns FALSE.
+				// Run the after request callable and stop processing requests if it returns false.
 
 				if ($afterRequest !== null && $currentApplication->getContainer()->call($afterRequest) === false) {
 					break;
