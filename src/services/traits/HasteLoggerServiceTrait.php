@@ -7,7 +7,7 @@
 
 namespace mako\haste\services\traits;
 
-use mako\haste\logger\handlers\FrankenPhpHandler;
+use Monolog\Handler\FrankenPhpHandler;
 
 /**
  * Haste logger service trait.
