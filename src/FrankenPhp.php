@@ -27,6 +27,11 @@ use function ignore_user_abort;
 class FrankenPhp implements HasteInterface
 {
 	/**
+	 * Maximum number of requests to process before the worker exits.
+	 */
+	protected const int MAX_REQUESTS = 1_000;
+
+	/**
 	 * Classes to preload into the container.
 	 */
 	protected const array PRELOAD = [
@@ -43,7 +48,7 @@ class FrankenPhp implements HasteInterface
 
 		// Configure things.
 
-		$maxRequests = $options['maxRequests'] ?? 1000;
+		$maxRequests = $options['maxRequests'] ?? static::MAX_REQUESTS;
 
 		$classesToPreload = array_unique([...static::PRELOAD, ...$options['preload'] ?? []]);
 
